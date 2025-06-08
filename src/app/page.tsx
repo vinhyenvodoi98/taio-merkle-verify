@@ -9,7 +9,7 @@ export default function Home() {
         <li>POST /api/hello - Accepts JSON data and returns it back</li>
       </ul>
       <p>
-        <a href="/api/docs">View API Documentation</a>
+        <a href="/api-docs">View API Documentation</a>
       </p>
     </main>
   )
