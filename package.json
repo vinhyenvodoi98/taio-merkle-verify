@@ -7,7 +7,10 @@
     "build": "next build",
     "vercel-build": "node scripts/build-swagger.js && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@types/swagger-jsdoc": "^6.0.4",
@@ -16,15 +19,20 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1"
+    "swagger-ui-express": "^5.0.1",
+    "taio-merkle": "file:../taio-merkle"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitest/ui": "^3.2.3",
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
-    "typescript": "^5"
+    "jsdom": "^26.1.0",
+    "typescript": "^5",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.2.3"
   }
 }
