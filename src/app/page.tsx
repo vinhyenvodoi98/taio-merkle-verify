@@ -5,8 +5,7 @@ export default function Home() {
       <p>This is an API-focused Next.js application.</p>
       <p>Available endpoints:</p>
       <ul>
-        <li>GET /api/hello - Returns a hello message</li>
-        <li>POST /api/hello - Accepts JSON data and returns it back</li>
+        <li>POST /api/v1/merkle/root - Creates a new Merkle tree and returns its root ID</li>
       </ul>
       <p>
         <a href="/api-docs">View API Documentation</a>

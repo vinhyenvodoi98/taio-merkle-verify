@@ -20,7 +20,7 @@ export default function SwaggerUI() {
         script.crossOrigin = 'anonymous';
         script.onload = async () => {
           try {
-            const response = await fetch('/swagger-spec.json');
+            const response = await fetch('/swagger.json');
             const spec = await response.json();
 
             // @ts-expect-error SwaggerUIBundle is loaded from external script
