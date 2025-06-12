@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { calculateMerkleRoot } from 'taio-merkle';
 import { validateMerkleData } from '@/lib/validators/merkle';
-import { MERKLE_CONFIG } from '@/config';
+import { CONFIG } from '@/config';
 
 /**
  * @swagger
@@ -63,8 +63,8 @@ export async function POST(request: NextRequest) {
 
     const rootId = calculateMerkleRoot(
       data,
-      MERKLE_CONFIG.LEAF_TAG,
-      MERKLE_CONFIG.BRANCH_TAG
+      CONFIG.merkle.leafTag,
+      CONFIG.merkle.branchTag
     );
 
     return NextResponse.json({ root_id: rootId });
