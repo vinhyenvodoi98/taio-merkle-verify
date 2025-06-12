@@ -1,20 +1,13 @@
-import { Environment, EnvironmentConfig } from './types';
-import { STAGING_CONFIG } from './staging';
-import { PRODUCTION_CONFIG } from './production';
+import { EnvironmentConfig } from './types';
+import stagingConfig from './staging';
+import productionConfig from './production';
 
-export const getEnvironmentConfig = (): EnvironmentConfig => {
-  const env = process.env.NEXT_PUBLIC_APP_ENV as Environment || 'staging';
-
-  switch (env) {
-    case 'production':
-      return PRODUCTION_CONFIG;
-    case 'staging':
-    default:
-      return STAGING_CONFIG;
-  }
+export const getConfig = (): EnvironmentConfig => {
+  const env = process.env.NEXT_PUBLIC_APP_ENV || 'staging';
+  return env === 'production' ? productionConfig : stagingConfig;
 };
 
-export const MERKLE_CONFIG = getEnvironmentConfig();
+export const CONFIG = getConfig();
 
 // Re-export types and configs
 export * from './types';

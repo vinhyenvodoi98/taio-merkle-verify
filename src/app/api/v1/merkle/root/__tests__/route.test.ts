@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { POST } from '../route';
 import { NextRequest } from 'next/server';
 import { calculateMerkleRoot } from 'taio-merkle';
-import { MERKLE_CONFIG } from '@/config';
+import { CONFIG } from '@/config';
 
 // Mock the taio-merkle module
 vi.mock('taio-merkle', () => ({
@@ -95,8 +95,8 @@ describe('POST /api/v1/merkle/root', () => {
     expect(data.root_id).toBe(mockRootId);
     expect(calculateMerkleRoot).toHaveBeenCalledWith(
       ['(10,100)', '(20,200)', '(30,300)'],
-      MERKLE_CONFIG.LEAF_TAG,
-      MERKLE_CONFIG.BRANCH_TAG
+      CONFIG.merkle.leafTag,
+      CONFIG.merkle.branchTag
     );
   });
 

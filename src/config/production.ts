@@ -1,6 +1,17 @@
 import { EnvironmentConfig } from './types';
 
-export const PRODUCTION_CONFIG: EnvironmentConfig = {
-  LEAF_TAG: process.env.MERKLE_LEAF_TAG || 'prod_merkle_leaf_tag',
-  BRANCH_TAG: process.env.MERKLE_BRANCH_TAG || 'prod_merkle_branch_tag',
-} as const; 
+const config: EnvironmentConfig = {
+  environment: 'production',
+  merkle: {
+    leafTag: process.env.MERKLE_LEAF_TAG || 'leafTag',
+    branchTag: process.env.MERKLE_BRANCH_TAG || 'branchTag',
+  },
+  redis: {
+    url: process.env.REDIS_URL || 'redis://localhost:6379',
+    tls: {
+      rejectUnauthorized: true,
+    },
+  },
+};
+
+export default config;
