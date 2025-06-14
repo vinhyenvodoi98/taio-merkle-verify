@@ -14,7 +14,11 @@
   "paths": {
     "/api/v1/merkle/root": {
       "post": {
-        "summary": "Calculate Merkle root from data array",
+        "summary": "Calculate Merkle root and store proofs",
+        "description": "Calculates Merkle root for given data and stores proofs in Redis.\n\nExample request:\n```json\n{\n  \"data\": [\n    \"(1,1111)\",\n    \"(2,2222)\",\n    \"(3,3333)\",\n    \"(4,4444)\",\n    \"(5,5555)\",\n    \"(6,6666)\",\n    \"(7,7777)\",\n    \"(8,8888)\"\n  ]\n}\n```\n\nExample response:\n```json\n{\n  \"success\": true,\n  \"data\": {\n    \"root_id\": \"0x...\",\n    \"epoch\": 1234567890\n  }\n}\n```\n",
+        "tags": [
+          "Merkle"
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -30,7 +34,17 @@
                     "items": {
                       "type": "string"
                     },
-                    "description": "Array of data strings in format (userId,balance)"
+                    "description": "Array of data strings in format \"(userId,balance)\"",
+                    "example": [
+                      "(1,1111)",
+                      "(2,2222)",
+                      "(3,3333)",
+                      "(4,4444)",
+                      "(5,5555)",
+                      "(6,6666)",
+                      "(7,7777)",
+                      "(8,8888)"
+                    ]
                   }
                 }
               }
@@ -39,15 +53,25 @@
         },
         "responses": {
           "200": {
-            "description": "Merkle root calculated successfully",
+            "description": "Successfully calculated Merkle root",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "root_id": {
-                      "type": "string",
-                      "description": "The calculated Merkle root"
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "root_id": {
+                          "type": "string"
+                        },
+                        "epoch": {
+                          "type": "number"
+                        }
+                      }
                     }
                   }
                 }
@@ -55,7 +79,7 @@
             }
           },
           "400": {
-            "description": "Invalid input data"
+            "description": "Invalid request data"
           },
           "500": {
             "description": "Server error"
