@@ -104,7 +104,7 @@ export async function POST(request: NextRequest) {
 
     // Generate epoch (current timestamp)
     const epoch = Math.floor(Date.now() / 1000);
-    // await RedisOperations.setEpoch(epoch);
+    await RedisOperations.setEpoch(epoch);
 
     // Calculate Merkle root
     const root = calculateMerkleRoot(

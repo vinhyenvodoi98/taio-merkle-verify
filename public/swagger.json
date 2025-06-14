@@ -12,6 +12,109 @@
     }
   ],
   "paths": {
+    "/api/v1/merkle/epoch": {
+      "get": {
+        "summary": "Get current epoch",
+        "description": "Returns the current epoch timestamp",
+        "tags": [
+          "Merkle"
+        ],
+        "responses": {
+          "200": {
+            "description": "Current epoch retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "epoch": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No epoch found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/api/v1/merkle/proof/{userId}": {
+      "get": {
+        "summary": "Get balance and merkle proof for a user",
+        "description": "Returns the balance and merkle proof for a specific user in the current epoch",
+        "tags": [
+          "Merkle"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "User ID to get proof for"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Proof retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "userId": {
+                          "type": "string"
+                        },
+                        "balance": {
+                          "type": "string"
+                        },
+                        "proof": {
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No proof found for user"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
     "/api/v1/merkle/root": {
       "post": {
         "summary": "Calculate Merkle root and store proofs",
