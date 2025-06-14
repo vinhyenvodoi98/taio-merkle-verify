@@ -45,7 +45,7 @@ import { RedisOperations } from '@/lib/redis/operations';
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }> }
 ) {
   try {
     const { userId } = await params;
@@ -78,11 +78,11 @@ export async function GET(
   } catch (error) {
     console.error('Failed to get proof:', error);
     return NextResponse.json(
-      { 
+      {
         error: 'Failed to get proof',
         details: error instanceof Error ? error.message : 'Unknown error'
       },
       { status: 500 }
     );
   }
-} 
+}
