@@ -23,7 +23,7 @@
     "react-dom": "^19.0.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
-    "taio-merkle": "file:../taio-merkle"
+    "taio-merkle": "^1.0.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
