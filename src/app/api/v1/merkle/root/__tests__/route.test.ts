@@ -118,4 +118,4 @@ describe('POST /api/v1/merkle/root', () => {
     expect(response.status).toBe(500);
     expect(data.error).toBe('Failed to generate Merkle root');
   });
-}); 
+});

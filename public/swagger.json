@@ -189,6 +189,84 @@
           }
         }
       }
+    },
+    "/api/v1/merkle/verify": {
+      "post": {
+        "summary": "Verify a Merkle proof",
+        "description": "Verifies if a given proof is valid for a user's balance",
+        "tags": [
+          "Merkle"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "userId",
+                  "balance",
+                  "proof"
+                ],
+                "properties": {
+                  "userId": {
+                    "type": "string",
+                    "description": "User ID to verify"
+                  },
+                  "balance": {
+                    "type": "string",
+                    "description": "User's balance to verify"
+                  },
+                  "proof": {
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "description": "Merkle proof to verify"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Verification result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "isValid": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request data"
+          },
+          "404": {
+            "description": "No epoch or root found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
     }
   },
   "components": {},
